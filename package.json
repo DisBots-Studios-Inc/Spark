@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/decca-dev/TaskBot.git"
+    "url": "git+https://github.com/DisBots-Studios-Inc/Spark.git"
   },
   "keywords": [
     "discord",
@@ -17,9 +17,9 @@
   "author": "Game Glide",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/decca-dev/TaskBot/issues"
+    "url": "https://github.com/DisBots-Studios-Inc/Spark/issues"
   },
-  "homepage": "https://github.com/decca-dev/TaskBot#readme",
+  "homepage": "https://github.com/DisBots-Studios-Inc/Spark/blob/main/README.md",
   "dependencies": {
     "chalk": "^4.1.1",
     "discord.js": "^12.5.1",
