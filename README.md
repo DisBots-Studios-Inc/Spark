@@ -1,2 +1,6 @@
-# Spark
-A general purpose bot, that does it all! written in Typescript and Discord.js!
+# 🎆 Spark - The discord bot that electrocutes!
+
+No literally! It sparks! A do-it-all discord bot that is the only one
+that you will ever need! Written in typescript!
+
+Note: Readme to be improved later
