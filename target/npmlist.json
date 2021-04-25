@@ -1,1 +1,0 @@
-{"version":"1.0.0","name":"taskbot","dependencies":{"discord.js":{"version":"12.5.3"},"dotenv":{"version":"8.2.0"},"mongoose":{"version":"5.12.5"},"ms":{"version":"2.1.3"},"pretty-ms":{"version":"7.0.1"},"reconlx":{"version":"1.2.41"},"ts-node":{"version":"9.1.1"},"typescript":{"version":"4.2.4"}}}

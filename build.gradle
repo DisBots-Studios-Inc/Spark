@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+}
+
+group 'com.disbots.spark'
+version '0.1'
+
+def junitVersion = "5.7.0"
+def javacordVersion = "3.3.0"
+def log4jVersion = "2.14.1"
+def JansiVersion = "2.3.2"
+def envVersion = "2.2.0"
+
+def classPath = "/libs/Spark-0.1-all.jar"
+def mainClass = "com.disbots.spark.core.Main"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    implementation "org.javacord:javacord:$javacordVersion"
+    runtimeOnly "org.apache.logging.log4j:log4j-core:$log4jVersion"
+    implementation "org.fusesource.jansi:jansi:$JansiVersion"
+    compile "io.github.cdimascio:dotenv-java:$envVersion"
+}
+
+task stage(dependsOn: ['build','shadowJar', 'clean', 'test'])
+build.mustRunAfter clean
+build.mustRunAfter test
+
+jar {
+    manifest{
+        attributes 'Class-Path': classPath, 'Main-Class': mainClass
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

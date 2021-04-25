@@ -1,0 +1,27 @@
+- matrix
+  - include
+    - language: java
+    java:
+      - os: linux
+      - dist: trusty
+      - jdk: oraclejdk11
+    before_install:
+      - chmod +x gradle
+    install:
+      - ./gradlew assemble
+    script:
+      - ./gradlew stage
+
+  - include
+    - language: java
+    java:
+      - os: linux
+      - dist: trusty
+      - jdk: oraclejdk10
+
+    before_install:
+      - chmod +x gradle
+    install:
+      - ./gradlew assemble
+    script:
+      - ./gradlew stage
