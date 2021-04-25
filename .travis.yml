@@ -1,5 +1,6 @@
 language: java
-os: windows
+os: linux
+dist: trusty
 jdk: oraclejdk11
   
 before_install:
