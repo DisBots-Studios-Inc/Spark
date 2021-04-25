@@ -1,8 +1,8 @@
 matrix:
+  - os: windows
+  - language: java
   include:
-    - language: java
       java:
-        - os: windows
         - jdk: oraclejdk11
       before_install:
         - chmod +x gradle
@@ -11,7 +11,6 @@ matrix:
       script:
         - ./gradlew stage
 
-    - language: java
       java:
         - os: windows
         - jdk: oraclejdk10
