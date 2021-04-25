@@ -1,22 +1,11 @@
-matrix:
+language: java
+java:
   - os: windows
-  - language: java
-  include:
-      java:
-        - jdk: oraclejdk11
-      before_install:
-        - chmod +x gradle
-      install:
-        - ./gradlew assemble
-      script:
-        - ./gradlew stage
-
-      java:
-        - os: windows
-        - jdk: oraclejdk10
-      before_install:
-        - chmod +x gradle
-      install:
-        - ./gradlew assemble
-      script:
-        - ./gradlew stage
+  - jdk: oraclejdk11
+  
+before_install:
+  - chmod +x gradle
+install:
+   - ./gradlew assemble
+script:
+   - ./gradlew stage
