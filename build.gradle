@@ -9,9 +9,12 @@ version '0.1'
 def junitVersion = "5.7.0"
 def javacordVersion = "3.3.0"
 def log4jVersion = "2.14.1"
+def slf4jVersion = "1.7.30"
 def JansiVersion = "2.3.2"
 def envVersion = "2.2.0"
 def mongodbDriverVersion = "4.1.2"
+
+def anotationVersion = "20.1.0"
 
 def classPath = "/libs/Spark-0.1-all.jar"
 def mainClassName = "com.disbots.spark.core.Main"
@@ -21,6 +24,7 @@ repositories {
 }
 
 dependencies {
+    implementation "org.jetbrains:annotations:$anotationVersion"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
     implementation "org.javacord:javacord:$javacordVersion"
@@ -28,7 +32,7 @@ dependencies {
     implementation "org.fusesource.jansi:jansi:$JansiVersion"
     compile "io.github.cdimascio:dotenv-java:$envVersion"
     compile "org.mongodb:mongodb-driver-sync:$mongodbDriverVersion"
-    implementation 'org.slf4j:slf4j-api:1.7.30'
+    implementation "org.slf4j:slf4j-log4j12:$slf4jVersion"
 }
 
 task stage(dependsOn: ['build','shadowJar', 'clean', 'test'])

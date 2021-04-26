@@ -21,7 +21,7 @@ public class Logger implements ILogger
     @Override
     public void LogDatabaseInfo(String info)
     {
-        System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(MAGENTA).a("DATABASE").fg(WHITE).a("]").fg(MAGENTA).a("info"));
+        System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(MAGENTA).a("DATABASE").fg(WHITE).a("]").fg(MAGENTA).a(info));
     }
 
     @Override
