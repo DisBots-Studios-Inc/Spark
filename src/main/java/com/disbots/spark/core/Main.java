@@ -1,12 +1,20 @@
 package com.disbots.spark.core;
 import com.disbots.spark.commands.Ping;
 import com.disbots.spark.util.logging.Logger;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import org.fusesource.jansi.AnsiConsole;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.entity.user.UserStatus;
 import io.github.cdimascio.dotenv.Dotenv;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoClient;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.ConnectionString;
+import com.mongodb.ServerAddress;
+import com.mongodb.MongoCredential;
 
 import java.util.Arrays;
 
@@ -15,6 +23,8 @@ public class Main
     public final static String Prefix = "s/";
     private final static Dotenv dotenv = Dotenv.load();
     private final static String Token = dotenv.get("TOKEN");
+    private final static String MongoUrl = dotenv.get("MONGO_URI");
+    private static MongoClient mongoClient = MongoClients.create(MongoUrl);
     private final static Logger logger = new Logger();
 
     public static void main(String[] args)
