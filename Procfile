@@ -1,0 +1,1 @@
+worker: java -jar /libs/Spark-0.1-all.jar
