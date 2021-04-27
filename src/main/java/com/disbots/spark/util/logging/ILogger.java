@@ -8,10 +8,10 @@ public interface ILogger
     void LogClientWarning(String warning);
     void LogCommandWarning(String warning);
     void LogDatabaseWarning(String warning);
-    void LogClientError(String error, Error e);
+    void LogClientError(String error, Exception e);
     void LogClientError(String error);
-    void LogCommandError(String error, Error e);
+    void LogCommandError(String error, Exception e);
     void LogCommandError(String error);
-    void LogDatabaseError(String error, Error e);
+    void LogDatabaseError(String error, Exception e);
     void LogDatabaseError(String error);
 }

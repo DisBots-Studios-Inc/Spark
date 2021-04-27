@@ -1,8 +1,11 @@
 language: java
 os: linux
 dist: trusty
-jdk: oraclejdk11
-  
+jdk:
+   - oraclejdk11
+   - oraclejdk8
+   - openjdk8
+
 before_install:
    - chmod +x gradle
 install:

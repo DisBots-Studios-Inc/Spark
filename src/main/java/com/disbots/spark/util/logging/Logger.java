@@ -43,7 +43,7 @@ public class Logger implements ILogger
     }
 
     @Override
-    public void LogClientError(String error, Error e)
+    public void LogClientError(String error, Exception e)
     {
         System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(RED).a("CLIENT_ERROR").fg(WHITE).a("]").fg(RED).a(error).fg(RED).a(" error: " + e.toString()));
     }
@@ -55,7 +55,7 @@ public class Logger implements ILogger
     }
 
     @Override
-    public void LogCommandError(String error, Error e)
+    public void LogCommandError(String error, Exception e)
     {
         System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(RED).a("COMMANDS_ERROR").fg(WHITE).a("]").fg(RED).a(error).fg(RED).a(" error: " + e.toString()));
     }
@@ -67,7 +67,7 @@ public class Logger implements ILogger
     }
 
     @Override
-    public void LogDatabaseError(String error, Error e)
+    public void LogDatabaseError(String error, Exception e)
     {
         System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(RED).a("DATABASE_ERROR").fg(WHITE).a("]").fg(RED).a(error).fg(RED).a(" error: " + e.toString()));
     }

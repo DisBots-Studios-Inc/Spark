@@ -1,11 +1,9 @@
 package com.disbots.spark.core;
-import com.disbots.spark.commands.Ping;
+import com.disbots.spark.commands.settings.setPrefix;
+import com.disbots.spark.commands.system.Ping;
 import com.disbots.spark.util.logging.Logger;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
 import org.fusesource.jansi.AnsiConsole;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
@@ -18,8 +16,8 @@ import java.util.Arrays;
 
 public class Main
 {
-    public final static String Prefix = "s/";
     private final static Dotenv dotenv = Dotenv.load();
+    public static String Prefix = "s/";
     private final static String MongoUrl = dotenv.get("MONGO_URI");
     private final static String Token = dotenv.get("TOKEN");
     public static MongoClient mongoClient;
@@ -46,18 +44,11 @@ public class Main
         //Register commands
         logger.LogCommandInfo("Registering Listeners...");
         client.addListener(new Ping());
+        client.addListener(new setPrefix());
         logger.LogCommandInfo("Registered listeners: " + Arrays.stream(client.getListeners().keySet().toArray()).count() + "!");
 
         //Connect to db
         mongoClient = MongoClients.create(MongoUrl);
         logger.LogDatabaseInfo("Connected to mongodb!");
-
-        Document testDocument = new Document();
-        testDocument.append("name", "game glide");
-        testDocument.append("age", 13);
-        MongoDatabase database = mongoClient.getDatabase("main");
-        MongoCollection<Document> toys = database.getCollection("toys");
-        toys.insertOne(testDocument);
-        logger.LogDatabaseInfo("added document to db!");
     }
 }
