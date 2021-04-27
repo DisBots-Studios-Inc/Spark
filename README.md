@@ -13,8 +13,9 @@ Here is the current build status of the bot:
 | Jdk | Build status
 | --------------- | --------------- |
 | OracleJdk11 | [![Build Status](https://travis-ci.com/DisBots-Studios-Inc/Spark.svg?branch=main)](https://travis-ci.com/DisBots-Studios-Inc/Spark)
+| OracleJdk8 | [![Build Status](https://travis-ci.com/DisBots-Studios-Inc/Spark.svg?branch=main)](https://travis-ci.com/DisBots-Studios-Inc/Spark)
+| OpenJdk8 | [![Build Status](https://travis-ci.com/DisBots-Studios-Inc/Spark.svg?branch=main)](https://travis-ci.com/DisBots-Studios-Inc/Spark)
 
-More jdk support will be added later.
 
 # 🌏 Planned features
 
