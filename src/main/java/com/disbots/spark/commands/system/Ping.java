@@ -1,8 +1,7 @@
 package com.disbots.spark.commands.system;
 
-import com.disbots.spark.util.ColorPallet;
-import com.disbots.spark.util.ServerCommand;
-import com.disbots.spark.util.logging.Logger;
+import com.disbots.spark.util.ColorPalette;
+import com.disbots.spark.util.CommandHandler;
 import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.server.Server;
@@ -12,10 +11,8 @@ import org.javacord.api.event.message.MessageCreateEvent;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
-public class Ping extends ServerCommand
+public class Ping extends CommandHandler
 {
-    private final static Logger logger = new Logger();
-
     public Ping()
     {
         super("ping");
@@ -34,9 +31,8 @@ public class Ping extends ServerCommand
             EmbedBuilder ErrorEmbed = new EmbedBuilder()
                     .setDescription("There was an error evaluating the latency! Please contact DisBots Inc.")
                     .setFooter("", message.getMessageAuthor().getAvatar())
-                    .setColor(ColorPallet.ERROR.getCode());
+                    .setColor(ColorPalette.ERROR.getCode());
             message.getChannel().sendMessage(ErrorEmbed);
-            logger.LogCommandError("Error while evaluating latency in a guild", e);
         }
     }
 
@@ -48,7 +44,7 @@ public class Ping extends ServerCommand
         CompletableFuture<Void> RESTLatency = message.getApi().measureRestLatency().thenAccept(Time -> {
             EmbedBuilder InitialPing = new EmbedBuilder()
                     .setDescription(":ping_pong: Testing Ping...")
-                    .setColor(ColorPallet.NEUTRAL.getCode())
+                    .setColor(ColorPalette.NEUTRAL.getCode())
                     .setFooter("", message.getMessageAuthor().getAvatar());
 
             EmbedBuilder PingEmbed;
@@ -58,7 +54,7 @@ public class Ping extends ServerCommand
                             "Bot Latency: " + "**"+GatewayLatency+"**" + "ms\n" +
                                     "Rest latency: " + "**"+Time.toMillis()+"**" + "ms\n")
                     .setFooter(message.getMessageAuthor().getDisplayName(), message.getMessageAuthor().getAvatar())
-                    .setColor(ColorPallet.NEUTRAL.getCode());
+                    .setColor(ColorPalette.NEUTRAL.getCode());
 
             EmbedBuilder finalPingEmbed = PingEmbed;
             message.getChannel().sendMessage(InitialPing).thenAccept(MessageToBeEdited -> MessageToBeEdited.getApi().getThreadPool().getScheduler().schedule(() -> {

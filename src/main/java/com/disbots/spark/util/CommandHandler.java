@@ -7,7 +7,7 @@ import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
-public abstract class ServerCommand implements MessageCreateListener
+public abstract class CommandHandler implements MessageCreateListener
 {
 
     /*
@@ -18,7 +18,7 @@ public abstract class ServerCommand implements MessageCreateListener
     private String command;
     public static String prefix = Main.Prefix;
 
-    protected ServerCommand(String command){
+    protected CommandHandler(String command){
         this.command = command;
     }
 

@@ -1,14 +1,11 @@
 package com.disbots.spark.core;
 import com.disbots.spark.commands.settings.setPrefix;
 import com.disbots.spark.commands.system.Ping;
+import com.disbots.spark.util.database.Mongo;
 import com.disbots.spark.util.logging.Logger;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import org.fusesource.jansi.AnsiConsole;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.activity.ActivityType;
-import org.javacord.api.entity.user.UserStatus;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.jetbrains.annotations.NotNull;
 
@@ -16,39 +13,40 @@ import java.util.Arrays;
 
 public class Main
 {
-    private final static Dotenv dotenv = Dotenv.load();
     public static String Prefix = "s/";
-    private final static String MongoUrl = dotenv.get("MONGO_URI");
-    private final static String Token = dotenv.get("TOKEN");
-    public static MongoClient mongoClient;
+    public final static Dotenv dotenv = Dotenv.load();
+
     private final static Logger logger = new Logger();
+    private final static String TOKEN = dotenv.get("TOKEN");
+    private final static Mongo mongoUtil = new Mongo();
 
 
     public static void main(String[] args)
     {
-        DiscordApi client = new DiscordApiBuilder().setToken(Token).login().join();
-        logger.LogClientInfo("Starting client...");
+        logger.info("Loading resources...", "client");
+        DiscordApi client = new DiscordApiBuilder().setToken(TOKEN).login().join();
+
+        logger.info("Initialising the client...", "client");
         init(client);
-        logger.LogClientInfo("client is ready and logged on as: " + client.getYourself().getName() + "!");
-        AnsiConsole.systemInstall();
+
+        logger.info("Loaded the resources!", "client");
+        logger.info("Initialized the client. Client is now logged in as " + client.getYourself().getName() + "#" + client.getYourself().getDiscriminator() + "!", "client");
     }
 
     private static void init(@NotNull DiscordApi client)
     {
         //Set status
-        logger.LogClientInfo("Setting status...");
+        logger.info("Setting the client activity...", "client");
         client.updateActivity(ActivityType.LISTENING, "to your messages!");
-        client.updateStatus(UserStatus.DO_NOT_DISTURB);
-        logger.LogClientInfo("Successfully set status!");
+        logger.info("Successfully set status!", "client");
 
         //Register commands
-        logger.LogCommandInfo("Registering Listeners...");
+        logger.info("Registering listeners...", "client");
         client.addListener(new Ping());
         client.addListener(new setPrefix());
-        logger.LogCommandInfo("Registered listeners: " + Arrays.stream(client.getListeners().keySet().toArray()).count() + "!");
+        logger.info("Registered a total of " + Arrays.stream(client.getListeners().keySet().toArray()).count() + " listeners!", "client");
 
         //Connect to db
-        mongoClient = MongoClients.create(MongoUrl);
-        logger.LogDatabaseInfo("Connected to mongodb!");
+        mongoUtil.connect();
     }
 }

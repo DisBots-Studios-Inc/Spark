@@ -1,80 +1,39 @@
 package com.disbots.spark.util.logging;
 
-import static org.fusesource.jansi.Ansi.Color.*;
-import static org.fusesource.jansi.Ansi.Color.GREEN;
-import static org.fusesource.jansi.Ansi.ansi;
+import java.time.LocalDateTime;
 
-public class Logger implements ILogger
+public class Logger
 {
-    @Override
-    public void LogClientInfo(String info)
+    public void info(String message, String src)
     {
-        System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(CYAN).a("CLIENT").fg(WHITE).a("]").fg(CYAN).a(info));
+        System.out.println(this.toHHMMSS() + " "  + LoggerColors.GREEN + "INFO" + LoggerColors.RESET + " " + "[" + this.getSrc(src) + "]" + " " + message);
     }
 
-    @Override
-    public void LogCommandInfo(String info)
+    public void warning(String message, String src)
     {
-        System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(GREEN).a("COMMANDS").fg(WHITE).a("]").fg(GREEN).a(info));
+        System.out.println(this.toHHMMSS() + " "  + LoggerColors.YELLOW + "WARNING" + LoggerColors.RESET + " " + "[" + this.getSrc(src) + "]" + " " + message);
     }
 
-    @Override
-    public void LogDatabaseInfo(String info)
+    public void error(String error, String src)
     {
-        System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(MAGENTA).a("DATABASE").fg(WHITE).a("]").fg(MAGENTA).a(info));
+        System.out.println(this.toHHMMSS() + " "  + LoggerColors.RED + "Error" + LoggerColors.RESET + " " + "[" + this.getSrc(src) + "]" + "\n" + "> " + error);
     }
 
-    @Override
-    public void LogClientWarning(String warning)
-    {
-        System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(YELLOW).a("CLIENT_WARNING").fg(WHITE).a("]").fg(YELLOW).a(warning));
+    private String getSrc(String src) {
+        if (src.isEmpty()) {
+            return "OTHER";
+        }
+
+        return src.toUpperCase();
     }
 
-    @Override
-    public void LogCommandWarning(String warning)
-    {
-        System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(YELLOW).a("COMMANDS_WARNING").fg(WHITE).a("]").fg(YELLOW).a(warning));
-    }
+    private String toHHMMSS() {
+        LocalDateTime timeNow = LocalDateTime.now();
 
-    @Override
-    public void LogDatabaseWarning(String warning)
-    {
-        System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(YELLOW).a("DATABASE_WARNING").fg(WHITE).a("]").fg(YELLOW).a(warning));
-    }
+        int hours = timeNow.getHour();
+        int minutes = timeNow.getMinute();
+        int seconds = timeNow.getSecond();
 
-    @Override
-    public void LogClientError(String error, Exception e)
-    {
-        System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(RED).a("CLIENT_ERROR").fg(WHITE).a("]").fg(RED).a(error).fg(RED).a(" error: " + e.toString()));
-    }
-
-    @Override
-    public void LogClientError(String error)
-    {
-        System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(RED).a("CLIENT_ERROR").fg(WHITE).a("]").fg(RED).a(error));
-    }
-
-    @Override
-    public void LogCommandError(String error, Exception e)
-    {
-        System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(RED).a("COMMANDS_ERROR").fg(WHITE).a("]").fg(RED).a(error).fg(RED).a(" error: " + e.toString()));
-    }
-
-    @Override
-    public void LogCommandError(String error)
-    {
-        System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(RED).a("COMMANDS_ERROR").fg(WHITE).a("]").fg(RED).a(error));
-    }
-
-    @Override
-    public void LogDatabaseError(String error, Exception e)
-    {
-        System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(RED).a("DATABASE_ERROR").fg(WHITE).a("]").fg(RED).a(error).fg(RED).a(" error: " + e.toString()));
-    }
-
-    @Override
-    public void LogDatabaseError(String error)
-    {
-        System.out.println(ansi().eraseScreen().fg(WHITE).a("[").fg(RED).a("DATABASE_ERROR").fg(WHITE).a("]").fg(RED).a(error));
+        return "[" + hours + ":" + minutes + ":" + seconds + "]";
     }
 }

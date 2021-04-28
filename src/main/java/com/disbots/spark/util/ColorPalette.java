@@ -2,7 +2,7 @@ package com.disbots.spark.util;
 
 import java.awt.*;
 
-public enum ColorPallet
+public enum ColorPalette
 {
     /* Embed Color Pallet for the bot. */
 
@@ -13,7 +13,7 @@ public enum ColorPallet
 
     private final Color code;
 
-    ColorPallet(Color code)
+    ColorPalette(Color code)
     {
         this.code = code;
     }
