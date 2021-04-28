@@ -21,7 +21,7 @@ Here is the current build status of the bot:
 
 Here is a checklist of all possible and completed features:
 
-- [ ] Proper Ping command
+- [x] Proper Ping command
 - [ ] Help command
 - [x] MongoDb support
 - [ ] Moderation
