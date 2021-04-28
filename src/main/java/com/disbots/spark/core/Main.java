@@ -1,5 +1,5 @@
 package com.disbots.spark.core;
-import com.disbots.spark.commands.settings.setPrefix;
+import com.disbots.spark.commands.settings.SetPrefix;
 import com.disbots.spark.commands.system.Ping;
 import com.disbots.spark.util.database.Mongo;
 import com.disbots.spark.util.logging.Logger;
@@ -43,7 +43,7 @@ public class Main
         //Register commands
         logger.info("Registering listeners...", "client");
         client.addListener(new Ping());
-        client.addListener(new setPrefix());
+        client.addListener(new SetPrefix());
         logger.info("Registered a total of " + Arrays.stream(client.getListeners().keySet().toArray()).count() + " listeners!", "client");
 
         //Connect to db

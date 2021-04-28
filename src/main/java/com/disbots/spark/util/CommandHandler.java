@@ -37,7 +37,7 @@ public abstract class CommandHandler implements MessageCreateListener
 
         // Runs everything.
         event.getServer().ifPresent(server -> event.getMessageAuthor().asUser().ifPresent(user ->
-                event.getServerTextChannel().ifPresent(serverTextChannel -> runCommand(event, server, serverTextChannel, user, event.getMessageContent().split(" ")))));
+                event.getServerTextChannel().ifPresent(serverTextChannel -> runCommand(event, server, serverTextChannel, user, event.getMessageContent().toLowerCase().split(" ")))));
     }
 
     protected abstract void runCommand(MessageCreateEvent message, Server server, ServerTextChannel channel, User user, String[] args);

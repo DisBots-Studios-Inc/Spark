@@ -1,8 +1,6 @@
-package com.disbots.spark.util;
+package com.disbots.spark.util.embeds;
 
-import java.awt.*;
-
-public enum Emojis
+public enum EmbedEmojis
 {
     LOADING(new String("<a:loading:781376656937713676>")),
     GREEN_TICK(new String("<a:green_tick:781083389280911370>")),
@@ -10,7 +8,7 @@ public enum Emojis
 
     private final String Emoji;
 
-    Emojis(String emoji)
+    EmbedEmojis(String emoji)
     {
         this.Emoji = emoji;
     }
