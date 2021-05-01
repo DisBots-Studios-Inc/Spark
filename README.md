@@ -32,7 +32,7 @@ Here is a checklist of all possible and completed features:
 - [ ] System commands
 - [ ] Settings
 - [ ] Join Messages
-- [ ] Support for other jdk like jdk 8
+- [x] Support for other jdk like jdk 8
 
 Keep in mind this bot is in it's alpha stages currently! Most of these features will be implemented once v1.0 comes out...
 
