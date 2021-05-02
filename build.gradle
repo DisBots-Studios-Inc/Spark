@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.disbots.spark'
-version '0.1'
+version '0.2'
 
 def junitVersion = "5.7.0"
 def javacordVersion = "3.3.0"
@@ -22,15 +22,45 @@ repositories {
     mavenCentral()
 }
 
+// dependencies for main project
 dependencies {
+    //misc
     implementation "org.jetbrains:annotations:$anotationVersion"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    //javacord/log4j
     implementation "org.javacord:javacord:$javacordVersion"
     runtimeOnly "org.apache.logging.log4j:log4j-core:$log4jVersion"
+    //dotenv (for loading .env files) and mongo driver
     compile "io.github.cdimascio:dotenv-java:$envVersion"
     compile "org.mongodb:mongodb-driver-sync:$mongodbDriverVersion"
+    //slf4j for log4j for mongodb error logging
     implementation "org.slf4j:slf4j-log4j12:$slf4jVersion"
+    //sdcf4j
+    compile project(":sdcf4j-core")
+    compile project(":sdcf4j-javacord")
+}
+
+allprojects {
+    // instructions for all projects empty for now
+}
+
+subprojects {
+    // instructions for each subproject.
+    apply plugin: "java"
+    repositories {
+        mavenCentral()
+    }
+}
+
+// dependencies for sdcf4j-javacord
+project(":sdcf4j-javacord"){
+    dependencies {
+        compile project(":sdcf4j-core")
+        implementation "org.javacord:javacord-api:$javacordVersion"
+        implementation "org.javacord:javacord-core:$javacordVersion"
+        implementation "org.apache.logging.log4j:log4j-api:$log4jVersion"
+    }
 }
 
 task stage(dependsOn: ['build','shadowJar', 'clean', 'test'])

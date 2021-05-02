@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.system.module.type="sourceSet" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output-test url="file://$MODULE_DIR$/../../sdcf4j-javacord/build/classes/java/test" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../sdcf4j-javacord/src/test">
+      <sourceFolder url="file://$MODULE_DIR$/../../sdcf4j-javacord/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../sdcf4j-javacord/src/test/resources" type="java-test-resource" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="jdk" jdkName="15" jdkType="JavaSDK" />
+    <orderEntry type="module" module-name="sdcf4j-javacord.main" />
+    <orderEntry type="library" name="Gradle: org.javacord:javacord-core:3.3.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.javacord:javacord-api:3.3.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.junit.jupiter:junit-jupiter-api:5.7.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.junit.platform:junit-platform-commons:1.7.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.apiguardian:apiguardian-api:1.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.opentest4j:opentest4j:1.2.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.junit.jupiter:junit-jupiter-engine:5.7.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.squareup.okhttp3:logging-interceptor:3.9.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.squareup.okhttp3:okhttp:3.9.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.9.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.neovisionaries:nv-websocket-client:2.6" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.codahale:xsalsa20poly1305:0.10.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.logging.log4j:log4j-api:2.11.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.vavr:vavr:0.10.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.junit.platform:junit-platform-engine:1.7.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.squareup.okio:okio:1.14.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.9.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.bouncycastle:bcprov-jdk15on:1.59" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.vavr:vavr-match:0.10.1" level="project" />
+  </component>
+  <component name="TestModuleProperties" production-module="sdcf4j-javacord.main" />
+</module>

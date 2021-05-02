@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+group 'com.disbots.spark.sdcf4j'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+}
