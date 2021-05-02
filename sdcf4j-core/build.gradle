@@ -2,20 +2,13 @@ plugins {
     id 'java'
 }
 
-group 'com.disbots.ports.sdcf4j-core'
+group 'com.disbots.spark.sdcf4j'
 version '1.0'
-
-def junitVersion = "5.7.0"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
-}
 
-test {
-    useJUnitPlatform()
 }

@@ -1,2 +1,2 @@
 rootProject.name = 'Spark'
-
+include ':sdcf4j-core', ':sdcf4j-javacord'

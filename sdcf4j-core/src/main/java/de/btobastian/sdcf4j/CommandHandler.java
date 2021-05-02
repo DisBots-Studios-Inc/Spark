@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
-package com.disbots.ports.sdcf4j.core;
+package de.btobastian.sdcf4j;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -27,9 +27,6 @@ import java.util.regex.Pattern;
 
 /**
  * The basic command handler.
- * @author Game Glide
- * @version %I%, %G%
- * @since 1.0
  */
 public abstract class CommandHandler {
 

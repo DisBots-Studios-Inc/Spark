@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group 'com.disbots.spark.sdcf4j.javacord'
+version '1.0'
+
+def javacordVersion = "3.3.0"
+def log4jVersion = "2.14.1"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+}

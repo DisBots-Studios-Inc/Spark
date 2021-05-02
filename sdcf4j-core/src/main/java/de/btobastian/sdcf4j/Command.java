@@ -16,17 +16,13 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
-package com.disbots.ports.sdcf4j.core;
+package de.btobastian.sdcf4j;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
  * A command annotation.
- *
- * @author Game Glide
- * @version %I%, %G%
- * @since 1.0
  */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Command {

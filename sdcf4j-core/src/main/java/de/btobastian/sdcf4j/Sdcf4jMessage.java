@@ -16,13 +16,10 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
-package com.disbots.ports.sdcf4j.core;
+package de.btobastian.sdcf4j;
 
 /**
  * All messages used in the lib.
- * @author Game Glide
- * @version %I%, %G%
- * @since 1.0
  */
 public enum Sdcf4jMessage {
 
