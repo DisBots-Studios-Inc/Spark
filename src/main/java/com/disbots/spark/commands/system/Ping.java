@@ -1,7 +1,27 @@
+/*
+ * Copyright (C) 2021 Game Glide
+ *
+ * This file is part of Spark.
+ *
+ * Spark is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser general Public License as
+ * published by the Free Software Foundation; either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ *  Spark is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this program; if not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 package com.disbots.spark.commands.system;
 
-import com.disbots.spark.util.embeds.EmbedColorPalette;
 import com.disbots.spark.util.CommandHandler;
+import com.disbots.spark.util.embeds.EmbedColorPalette;
 import com.disbots.spark.util.embeds.EmbedMaker;
 import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
@@ -12,6 +32,13 @@ import org.javacord.api.event.message.MessageCreateEvent;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Ping command, says the current latency of the bot
+ *
+ * @author Game Glide
+ * @since 0.1
+ * @version 0.2
+ */
 public class Ping extends CommandHandler
 {
     public Ping()
@@ -21,6 +48,15 @@ public class Ping extends CommandHandler
 
     private EmbedMaker embedMaker = new EmbedMaker();
 
+    /**
+     * Runs the ping command
+     *
+     * @param message message event
+     * @param server server of the message event
+     * @param channel channel of the message event
+     * @param user user that sent the message
+     * @param args arguments of the message
+     */
     @Override
     protected void runCommand(MessageCreateEvent message, Server server, ServerTextChannel channel, User user, String[] args)
     {

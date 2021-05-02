@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.disbots.spark'
-version '0.1'
+version '0.2'
 
 def junitVersion = "5.7.0"
 def javacordVersion = "3.3.0"
