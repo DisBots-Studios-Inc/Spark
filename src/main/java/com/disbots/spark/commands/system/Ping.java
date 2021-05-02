@@ -20,16 +20,10 @@
 
 package com.disbots.spark.commands.system;
 
-import com.disbots.spark.util.CommandHandler;
-import com.disbots.spark.util.embeds.EmbedColorPalette;
 import com.disbots.spark.util.embeds.EmbedMaker;
 import de.btobastian.sdcf4j.Command;
 import de.btobastian.sdcf4j.CommandExecutor;
-import org.javacord.api.entity.channel.ServerTextChannel;
-import org.javacord.api.entity.message.Message;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
-import org.javacord.api.entity.server.Server;
-import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 
 import java.util.concurrent.CompletableFuture;
@@ -44,9 +38,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class Ping implements CommandExecutor
 {
-    @Command(aliases = {"ping", "p", "latency", "botlatency"}, description = "Tests and shows the bot's latency.")
-
     private final EmbedMaker embedMaker = new EmbedMaker();
+
+    @Command(aliases = {"ping", "p", "latency", "botlatency"}, description = "Tests and shows the bot's latency.")
     public void onPingCommand(String[] args, MessageCreateEvent message)
     {
         /* Sending The embed and checking for errors in calculating the latency. */

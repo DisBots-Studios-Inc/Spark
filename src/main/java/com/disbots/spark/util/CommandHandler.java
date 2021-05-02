@@ -37,6 +37,7 @@ import org.javacord.api.listener.message.MessageCreateListener;
  * @since 0.1
  * @version 0.2
  */
+@Deprecated
 public abstract class CommandHandler implements MessageCreateListener
 {
 

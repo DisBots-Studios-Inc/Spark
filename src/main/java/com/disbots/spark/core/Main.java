@@ -20,6 +20,8 @@
 
 package com.disbots.spark.core;
 
+import com.disbots.spark.commands.help.Help;
+import com.disbots.spark.commands.settings.SetPrefix;
 import com.disbots.spark.commands.system.Ping;
 import com.disbots.spark.util.database.Mongo;
 import com.disbots.spark.util.logging.Logger;
@@ -78,6 +80,8 @@ public class Main
         //Register commands
         logger.info("Registering commands...", "client");
         commandHandler.registerCommand(new Ping());
+        commandHandler.registerCommand(new SetPrefix());
+        commandHandler.registerCommand(new Help(commandHandler));
         logger.info("Registered a total of " + Arrays.stream(client.getListeners().keySet().toArray()).count() + " commands!", "client");
 
         //Connect to db

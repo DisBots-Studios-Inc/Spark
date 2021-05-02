@@ -21,12 +21,10 @@
 package com.disbots.spark.commands.settings;
 
 import com.disbots.spark.core.Main;
-import com.disbots.spark.util.CommandHandler;
 import com.disbots.spark.util.embeds.EmbedMaker;
-import org.javacord.api.entity.channel.ServerTextChannel;
+import de.btobastian.sdcf4j.Command;
+import de.btobastian.sdcf4j.CommandExecutor;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
-import org.javacord.api.entity.server.Server;
-import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 
 /**
@@ -37,23 +35,18 @@ import org.javacord.api.event.message.MessageCreateEvent;
  * @version 0.2
  * @implNote Not working with db yet.
  */
-public class SetPrefix extends CommandHandler {
-    public SetPrefix()
-    {
-        super("setprefix");
-    }
-
+public class SetPrefix implements CommandExecutor
+{
     private final EmbedMaker embedMaker = new EmbedMaker();
 
-    @Override
-    protected void runCommand(MessageCreateEvent message, Server server, ServerTextChannel channel, User user, String[] args)
+    @Command(aliases = {"setPrefix", "setP"}, description = "sets the prefix of the server")
+    public void onSetPrefix(String[] args, MessageCreateEvent message)
     {
         try
         {
             // TODO: use mongodb to store servers instead.
             Main.Prefix = args[1];
-            CommandHandler.prefix = args[1];
-            EmbedBuilder successEmbed = embedMaker.success("The prefix was successfully changed to " + "**" + prefix + "**" + ".", message.getMessage());
+            EmbedBuilder successEmbed = embedMaker.success("The prefix was successfully changed to " + "**" + Main.Prefix + "**" + ".", message.getMessage());
 
             message.getChannel().sendMessage(successEmbed);
         }
