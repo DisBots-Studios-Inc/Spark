@@ -32,6 +32,7 @@ import static com.disbots.spark.core.Main.dotenv;
  * @author Aktindo
  * @since 0.1
  * @version 0.2
+ * @implNote Please ensure that you have provided a Mongo URI.
  */
 public class Mongo {
     private final Logger logger = new Logger();

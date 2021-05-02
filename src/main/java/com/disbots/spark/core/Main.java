@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Game Glide
+ * Copyright (C) 2021 Aktindo & Game Glide
  *
  * This file is part of Spark.
  *
@@ -20,22 +20,22 @@
 
 package com.disbots.spark.core;
 
-import com.disbots.spark.commands.settings.SetPrefix;
 import com.disbots.spark.commands.system.Ping;
 import com.disbots.spark.util.database.Mongo;
 import com.disbots.spark.util.logging.Logger;
+import de.btobastian.sdcf4j.CommandHandler;
+import de.btobastian.sdcf4j.handler.JavacordHandler;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.activity.ActivityType;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
 /**
  * Entry point
  *
- * @author Game Glide
+ * @author Aktindo & Game Glide
  * @since 0.1
  * @version 0.2
  * @implNote Please insure that env is set correctly.
@@ -50,20 +50,25 @@ public class Main
     private final static String TOKEN = dotenv.get("TOKEN");
     private final static Mongo mongoUtil = new Mongo();
 
+    static DiscordApi client;
+    static CommandHandler commandHandler;
 
     public static void main(String[] args)
     {
         logger.info("Loading resources...", "client");
-        DiscordApi client = new DiscordApiBuilder().setToken(TOKEN).login().join();
+        client = new DiscordApiBuilder().setToken(TOKEN).login().join();
+        commandHandler = new JavacordHandler(client);
+
+        commandHandler.setDefaultPrefix(Prefix);
 
         logger.info("Initialising the client...", "client");
-        init(client);
+        init();
 
         logger.info("Loaded the resources!", "client");
         logger.info("Initialized the client. Client is now logged in as " + client.getYourself().getName() + "#" + client.getYourself().getDiscriminator() + "!", "client");
     }
 
-    private static void init(@NotNull DiscordApi client)
+    private static void init()
     {
         //Set status
         logger.info("Setting the client activity...", "client");
@@ -71,10 +76,9 @@ public class Main
         logger.info("Successfully set status!", "client");
 
         //Register commands
-        logger.info("Registering listeners...", "client");
-        client.addListener(new Ping());
-        client.addListener(new SetPrefix());
-        logger.info("Registered a total of " + Arrays.stream(client.getListeners().keySet().toArray()).count() + " listeners!", "client");
+        logger.info("Registering commands...", "client");
+        commandHandler.registerCommand(new Ping());
+        logger.info("Registered a total of " + Arrays.stream(client.getListeners().keySet().toArray()).count() + " commands!", "client");
 
         //Connect to db
         mongoUtil.connect();

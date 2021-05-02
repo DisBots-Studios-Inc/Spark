@@ -23,7 +23,10 @@ package com.disbots.spark.commands.system;
 import com.disbots.spark.util.CommandHandler;
 import com.disbots.spark.util.embeds.EmbedColorPalette;
 import com.disbots.spark.util.embeds.EmbedMaker;
+import de.btobastian.sdcf4j.Command;
+import de.btobastian.sdcf4j.CommandExecutor;
 import org.javacord.api.entity.channel.ServerTextChannel;
+import org.javacord.api.entity.message.Message;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
@@ -39,26 +42,12 @@ import java.util.concurrent.TimeUnit;
  * @since 0.1
  * @version 0.2
  */
-public class Ping extends CommandHandler
+public class Ping implements CommandExecutor
 {
-    public Ping()
-    {
-        super("ping");
-    }
+    @Command(aliases = {"ping", "p", "latency", "botlatency"}, description = "Tests and shows the bot's latency.")
 
-    private EmbedMaker embedMaker = new EmbedMaker();
-
-    /**
-     * Runs the ping command
-     *
-     * @param message message event
-     * @param server server of the message event
-     * @param channel channel of the message event
-     * @param user user that sent the message
-     * @param args arguments of the message
-     */
-    @Override
-    protected void runCommand(MessageCreateEvent message, Server server, ServerTextChannel channel, User user, String[] args)
+    private final EmbedMaker embedMaker = new EmbedMaker();
+    public void onPingCommand(String[] args, MessageCreateEvent message)
     {
         /* Sending The embed and checking for errors in calculating the latency. */
         try
@@ -67,11 +56,11 @@ public class Ping extends CommandHandler
         }
         catch (InterruptedException e)
         {
-            EmbedBuilder ErrorEmbed = new EmbedBuilder()
-                    .setDescription("There was an error evaluating the latency! Please contact DisBots Inc.")
-                    .setFooter("", message.getMessageAuthor().getAvatar())
-                    .setColor(EmbedColorPalette.ERROR.getCode());
-            message.getChannel().sendMessage(ErrorEmbed);
+            message.getChannel()
+                .sendMessage(
+                    new EmbedMaker()
+                        .error("There was an error evaluating the latency.", message.getMessage())
+                );
         }
     }
 
