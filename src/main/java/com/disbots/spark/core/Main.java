@@ -20,6 +20,7 @@
 
 package com.disbots.spark.core;
 
+import com.disbots.spark.commands.fun.Magic8Ball;
 import com.disbots.spark.commands.help.Help;
 import com.disbots.spark.commands.settings.SetPrefix;
 import com.disbots.spark.commands.system.Ping;
@@ -50,6 +51,7 @@ public class Main
 
     private final static Logger logger = new Logger();
     private final static String TOKEN = dotenv.get("TOKEN");
+    public final static String MAGICBALLURI = dotenv.get("8BALLURI");
     private final static Mongo mongoUtil = new Mongo();
 
     static DiscordApi client;
@@ -81,8 +83,9 @@ public class Main
         logger.info("Registering commands...", "client");
         commandHandler.registerCommand(new Ping());
         commandHandler.registerCommand(new SetPrefix());
+        commandHandler.registerCommand(new Magic8Ball());
         commandHandler.registerCommand(new Help(commandHandler));
-        logger.info("Registered a total of " + Arrays.stream(client.getListeners().keySet().toArray()).count() + " commands!", "client");
+        logger.info("Registered a total of " + Arrays.stream(commandHandler.getCommands().toArray()).count() + " commands!", "client");
 
         //Connect to db
         mongoUtil.connect();

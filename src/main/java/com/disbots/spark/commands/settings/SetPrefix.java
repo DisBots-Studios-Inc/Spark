@@ -52,7 +52,7 @@ public class SetPrefix implements CommandExecutor
         }
         catch(IndexOutOfBoundsException e)
         {
-            EmbedBuilder errorEmbed = embedMaker.error("Run `[prefix]help setPrefix` to refer the command usage.", message.getMessage())
+            EmbedBuilder errorEmbed = embedMaker.error("Run `" + Main.Prefix + "help setPrefix` to refer the command usage.", message.getMessage())
                     .setTitle("Syntax error!");
 
             message.getChannel().sendMessage(errorEmbed);
