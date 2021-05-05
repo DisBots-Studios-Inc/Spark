@@ -1,0 +1,10 @@
+*       @Aktindo @YT-GameWorks
+
+*.js    @Aktindo
+*.ts    @Aktindo
+*.jsx   @Aktindo
+*.tsx   @Aktindo
+*.java  @YT-GameWorks
+*.java  @Aktindo
+
+/src/ @YT-GameWorks

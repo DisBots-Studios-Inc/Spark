@@ -37,4 +37,5 @@ Here is a checklist of all possible and completed features:
 Keep in mind this bot is in it's alpha stages currently! Most of these features will be implemented once v1.0 comes out...
 
 # 🆘 Helping out
-Open a pull request or issue (contributing guide templates changelog and stuff to be added later)
+Thanks for choosing to help out in development! You can open an issue or a pull request to do the same!
+Please follow the [https://github.com/DisBots-Studios-Inc/Spark/tree/main/.github/CONRIBUTING.md](Contribution guide).
