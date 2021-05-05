@@ -90,11 +90,11 @@ public class Magic8Ball implements CommandExecutor
 
     private String makeRequest(String question) throws IOException
     {
-        var url = Main.MAGICBALLURI + question;
+        String url = Main.MAGICBALLURI + question;
 
         try {
 
-            var myurl = new URL(url);
+            URL myurl = new URL(url);
             con = (HttpURLConnection) myurl.openConnection();
 
             con.setRequestMethod("GET");
