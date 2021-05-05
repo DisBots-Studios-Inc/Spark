@@ -38,4 +38,4 @@ Keep in mind this bot is in it's alpha stages currently! Most of these features 
 
 # 🆘 Helping out
 Thanks for choosing to help out in development! You can open an issue or a pull request to do the same!
-Please follow the [https://github.com/DisBots-Studios-Inc/Spark/tree/main/.github/CONRIBUTING.md](Contribution guide).
+Please follow the [Contributing guidelines](https://github.com/DisBots-Studios-Inc/Spark/tree/main/.github/CONRIBUTING.md).
