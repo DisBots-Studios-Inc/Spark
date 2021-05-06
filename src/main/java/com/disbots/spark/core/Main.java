@@ -24,8 +24,11 @@ import com.disbots.spark.commands.fun.Magic8Ball;
 import com.disbots.spark.commands.help.Help;
 import com.disbots.spark.commands.settings.SetPrefix;
 import com.disbots.spark.commands.system.Ping;
+import com.disbots.spark.core.models.Server;
 import com.disbots.spark.util.database.Mongo;
 import com.disbots.spark.util.logging.Logger;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import de.btobastian.sdcf4j.CommandHandler;
 import de.btobastian.sdcf4j.handler.JavacordHandler;
 import io.github.cdimascio.dotenv.Dotenv;
@@ -54,7 +57,7 @@ public class Main
     public final static String MAGICBALLURI = dotenv.get("8BALLURI");
     private final static Mongo mongoUtil = new Mongo();
 
-    static DiscordApi client;
+    public static DiscordApi client;
     static CommandHandler commandHandler;
 
     public static void main(String[] args)
