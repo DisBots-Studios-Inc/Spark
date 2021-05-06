@@ -29,6 +29,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.event.CommandListener;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
@@ -44,38 +45,37 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
  * @version 0.2
  * @implNote Please ensure that you have provided a Mongo URI.
  */
-public class Mongo {
+public class Mongo
+{
     private final Logger logger = new Logger();
     private final static String MONGO_URI = dotenv.get("MONGO_URI");
 
     public static MongoClient mongoClient;
-    public static MongoDatabase mainDB;
-    public static MongoCollection<Server> serverCollection;
+    MongoCollection<Server> serverCollection;
 
-    public void connect() {
+    public void connect()
+    {
         // if we use this, we can use POJOS.
         CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
                 fromProviders(PojoCodecProvider.builder().automatic(true).build()));
 
-        ConnectionString connectionString = new ConnectionString(MONGO_URI);
-
-        MongoClientSettings settings = MongoClientSettings.builder()
-                .codecRegistry(pojoCodecRegistry)
-                .applyConnectionString(connectionString)
-                .build();
-
         logger.info("Connecting to MongoDB...", "database");
-        try {
-            mongoClient = MongoClients.create(settings);
-        } catch (Exception error) {
+        try
+        {
+            mongoClient = MongoClients.create(MONGO_URI);
+            MongoDatabase settingsDB = mongoClient.getDatabase("settings").withCodecRegistry(pojoCodecRegistry);
+            serverCollection = settingsDB.getCollection("serverSettings", Server.class);
+        }
+        catch (Exception error)
+        {
             logger.error("Error while connecting to MongoDB." + error.toString(), "database");
         }
         logger.info("Connected to MongoDB!", "database");
 
-        mainDB = mongoClient.getDatabase("main");
-        serverCollection = mainDB.getCollection("servers", Server.class);
+        // drop all the data in it
+        serverCollection.drop();
 
-        //adding servers to db
+        // adding servers to db
         Server devlabo = new Server("devlabo", "s/");
         serverCollection.insertOne(devlabo);
 

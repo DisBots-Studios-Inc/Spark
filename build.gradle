@@ -45,10 +45,6 @@ dependencies {
     compile project(":sdcf4j-javacord")
 }
 
-allprojects {
-    // instructions for all projects empty for now
-}
-
 subprojects {
     // instructions for each subproject.
     apply plugin: "java"

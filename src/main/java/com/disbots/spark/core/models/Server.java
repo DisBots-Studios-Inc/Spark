@@ -35,7 +35,7 @@ public class Server
     private String ServerName;
     private String Prefix;
 
-    public Server(String serverName, String prefix)
+    public Server(final String serverName, final String prefix)
     {
         ServerName = serverName;
         Prefix = prefix;
