@@ -27,7 +27,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.btobastian.sdcf4j.Command;
 import de.btobastian.sdcf4j.CommandExecutor;
-import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 
 import java.io.BufferedReader;
@@ -43,7 +42,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author Game Glide
  * @since 0.2
- * @version 0.2
+ * @version 0.3
  */
 public class Magic8Ball implements CommandExecutor
 {
@@ -52,15 +51,11 @@ public class Magic8Ball implements CommandExecutor
     @Command(aliases = {"8Ball", "Ball", "Toss"}, description = "Displays the answer to your questions!", usage = "8Ball <question>")
     public void OnCommand(MessageCreateEvent message, String[] args)
     {
-        if (args.length > 1) // more than 1 argument
+        if (args.length == 0)  // s/8Ball
         {
             message.getChannel().sendMessage(new EmbedMaker().error("Incorrect usage! Run `" + Main.Prefix + "help 8Ball" + "`", message.getMessage()).setTitle("Syntax error!"));
         }
-        else if (args.length == 0)  // s/8Ball
-        {
-            message.getChannel().sendMessage(new EmbedMaker().error("Incorrect usage! Run `" + Main.Prefix + "help 8Ball" + "`", message.getMessage()).setTitle("Syntax error!"));
-        }
-        else if (args.length == 1) // 1 argument
+        else // 1 argument
         {
             CompletableFuture<Void> RequestResponse = message.getChannel().sendMessage(new EmbedMaker().loading("The almighty 8Ball is thinking!", message.getMessage()).setTitle("Loading...")).thenAccept(SentMessage -> {
                 String response;
@@ -68,7 +63,8 @@ public class Magic8Ball implements CommandExecutor
 
                 try
                 {
-                    response = makeRequest("hehe");
+                    // HACK: this just uses the first word, not the entire sentence.
+                    response = makeRequest(args[1]);
                     ObjectMapper objectMapper = new ObjectMapper();
 
                     JsonNode node = objectMapper.readValue(response, JsonNode.class);

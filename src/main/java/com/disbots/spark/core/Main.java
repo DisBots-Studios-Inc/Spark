@@ -24,7 +24,6 @@ import com.disbots.spark.commands.fun.Magic8Ball;
 import com.disbots.spark.commands.help.Help;
 import com.disbots.spark.commands.settings.SetPrefix;
 import com.disbots.spark.commands.system.Ping;
-import com.disbots.spark.core.models.Server;
 import com.disbots.spark.util.database.Mongo;
 import com.disbots.spark.util.logging.Logger;
 import com.mongodb.client.MongoCollection;
@@ -32,6 +31,7 @@ import com.mongodb.client.MongoDatabase;
 import de.btobastian.sdcf4j.CommandHandler;
 import de.btobastian.sdcf4j.handler.JavacordHandler;
 import io.github.cdimascio.dotenv.Dotenv;
+import org.bson.Document;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.activity.ActivityType;
@@ -43,7 +43,7 @@ import java.util.Arrays;
  *
  * @author Aktindo & Game Glide
  * @since 0.1
- * @version 0.2
+ * @version 0.3
  * @implNote Please insure that env is set correctly.
  */
 

@@ -27,7 +27,7 @@ import org.bson.types.ObjectId;
  *
  * @author Game Glide
  * @since 0.2
- * @version 0.2
+ * @version 0.3
  */
 public class Server
 {

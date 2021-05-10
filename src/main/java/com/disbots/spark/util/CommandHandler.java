@@ -35,7 +35,7 @@ import org.javacord.api.listener.message.MessageCreateListener;
  * @deprecated use Sdcf4j instead
  * @author Game Glide
  * @since 0.1
- * @version 0.2
+ * @version 0.3
  */
 @Deprecated
 public abstract class CommandHandler implements MessageCreateListener

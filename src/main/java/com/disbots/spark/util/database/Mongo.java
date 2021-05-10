@@ -20,16 +20,14 @@
 
 package com.disbots.spark.util.database;
 
-import com.disbots.spark.core.Main;
 import com.disbots.spark.core.models.Server;
 import com.disbots.spark.util.logging.Logger;
-import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.event.CommandListener;
+import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
@@ -42,7 +40,7 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
  *
  * @author Aktindo & Game Glide
  * @since 0.1
- * @version 0.2
+ * @version 0.3
  * @implNote Please ensure that you have provided a Mongo URI.
  */
 public class Mongo
@@ -55,7 +53,7 @@ public class Mongo
 
     public void connect()
     {
-        // if we use this, we can use POJOS.
+        //POJO codec registry.
         CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
                 fromProviders(PojoCodecProvider.builder().automatic(true).build()));
 

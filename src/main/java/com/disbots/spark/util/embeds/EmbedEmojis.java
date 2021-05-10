@@ -25,7 +25,7 @@ package com.disbots.spark.util.embeds;
  *
  * @author Game Glide
  * @since 0.1
- * @version 0.2
+ * @version 0.3
  */
 public enum EmbedEmojis
 {

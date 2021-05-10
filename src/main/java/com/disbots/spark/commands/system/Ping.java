@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Game Glide
  * @since 0.1
- * @version 0.2
+ * @version 0.3
  */
 public class Ping implements CommandExecutor
 {

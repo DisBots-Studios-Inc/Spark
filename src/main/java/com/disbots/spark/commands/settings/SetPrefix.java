@@ -32,7 +32,7 @@ import org.javacord.api.event.message.MessageCreateEvent;
  *
  * @author Game Glide
  * @since 0.1
- * @version 0.2
+ * @version 0.3
  * @implNote Not working with db yet.
  */
 public class SetPrefix implements CommandExecutor
