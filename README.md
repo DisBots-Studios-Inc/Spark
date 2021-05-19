@@ -1,3 +1,7 @@
+# THIS PROJECT IS TEMPORARY ON HOLD
+Development will continue, after I find a little more time to work on this side project.
+<hr/>
+
 # Spark- The discord bot that electrocutes 🎇!
 
 This is the Spark discord bot (previosly named "Quabot"), the multi functional discord bot for your server!
