@@ -23,10 +23,12 @@ package com.disbots.spark.core;
 import com.disbots.spark.commands.fun.Magic8Ball;
 import com.disbots.spark.commands.help.Github;
 import com.disbots.spark.commands.help.Help;
+import com.disbots.spark.commands.help.ServerInfo;
 import com.disbots.spark.commands.help.Support;
 import com.disbots.spark.commands.settings.SetPrefix;
 import com.disbots.spark.commands.system.Kill;
 import com.disbots.spark.commands.system.Ping;
+import com.disbots.spark.commands.system.Uptime;
 import com.disbots.spark.util.database.Mongo;
 import com.disbots.spark.util.logging.Logger;
 import de.btobastian.sdcf4j.CommandHandler;
@@ -35,6 +37,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.activity.ActivityType;
+import org.javacord.api.entity.intent.Intent;
 
 import java.util.Arrays;
 
@@ -63,7 +66,7 @@ public class Main
     public static void main(String[] args)
     {
         logger.info("Loading resources...", "client");
-        client = new DiscordApiBuilder().setToken(TOKEN).login().join();
+        client = new DiscordApiBuilder().setToken(TOKEN).setAllIntents().login().join();
         mongoUtil = new Mongo(client);
         commandHandler = new JavacordHandler(client);
 
@@ -89,8 +92,10 @@ public class Main
         commandHandler.registerCommand(new SetPrefix());
         commandHandler.registerCommand(new Magic8Ball());
         commandHandler.registerCommand(new Support());
+        commandHandler.registerCommand(new Uptime());
         commandHandler.registerCommand(new Github());
         commandHandler.registerCommand(new Kill());
+        commandHandler.registerCommand(new ServerInfo());
         commandHandler.registerCommand(new Help(commandHandler));
         logger.info("Registered a total of " + Arrays.stream(commandHandler.getCommands().toArray()).count() + " commands!", "client");
 
