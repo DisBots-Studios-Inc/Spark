@@ -27,9 +27,11 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
+import org.javacord.api.DiscordApi;
+
+import java.util.Collection;
 
 import static com.disbots.spark.core.Main.dotenv;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
@@ -46,10 +48,16 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 public class Mongo
 {
     private final Logger logger = new Logger();
-    private final static String MONGO_URI = dotenv.get("MONGO_URI");
+    private static String MONGO_URI = dotenv.get("MONGO_URI");
 
+    private static DiscordApi bot;
     public static MongoClient mongoClient;
     MongoCollection<Server> serverCollection;
+
+    public Mongo(DiscordApi api)
+    {
+        bot = api;
+    }
 
     public void connect()
     {
@@ -73,10 +81,22 @@ public class Mongo
         // drop all the data in it
         serverCollection.drop();
 
-        // adding servers to db
-        Server devlabo = new Server("devlabo", "s/");
-        serverCollection.insertOne(devlabo);
+        logger.info("Registering guilds...", "database");
+        RegisterGuilds();
+    }
 
-        logger.info("inserted servers!", "database");
+    private void RegisterGuilds()
+    {
+        Collection<org.javacord.api.entity.server.Server> servers = bot.getServers();
+
+        servers.forEach(server -> {
+            logger.debug("Bot is in: ", "database");
+            logger.debug(server.getName(), "database");
+
+            Server ServerObject = new Server(server.getName(), "s/");
+            serverCollection.insertOne(ServerObject);
+        });
+
+        logger.info("Registered Guilds successfully!", "database");
     }
 }

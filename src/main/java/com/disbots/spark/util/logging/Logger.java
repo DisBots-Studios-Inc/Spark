@@ -61,7 +61,12 @@ public class Logger
      */
     public void error(String error, String src)
     {
-        System.out.println(this.toHHMMSS() + " "  + LoggerColors.RED + "Error" + LoggerColors.RESET + " " + "[" + this.getSrc(src) + "]" + "\n" + "> " + error);
+        System.out.println(this.toHHMMSS() + " "  + LoggerColors.RED + "ERROR" + LoggerColors.RESET + " " + "[" + this.getSrc(src) + "]" + "\n" + "> " + error);
+    }
+
+    public void debug(String message, String src)
+    {
+        System.out.println(this.toHHMMSS() + " "  + LoggerColors.CYAN + "DEBUG" + LoggerColors.RESET + " " + "[" + this.getSrc(src) + "]" + message);
     }
 
     /**
