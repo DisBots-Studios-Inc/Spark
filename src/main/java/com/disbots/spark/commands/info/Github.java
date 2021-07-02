@@ -18,7 +18,7 @@
  *
  */
 
-package com.disbots.spark.commands.help;
+package com.disbots.spark.commands.info;
 
 import com.disbots.spark.util.embeds.EmbedMaker;
 import de.btobastian.sdcf4j.Command;

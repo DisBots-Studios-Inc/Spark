@@ -21,10 +21,11 @@
 package com.disbots.spark.core;
 
 import com.disbots.spark.commands.fun.Magic8Ball;
-import com.disbots.spark.commands.help.Github;
+import com.disbots.spark.commands.info.BotInfo;
+import com.disbots.spark.commands.info.Github;
 import com.disbots.spark.commands.help.Help;
-import com.disbots.spark.commands.help.ServerInfo;
-import com.disbots.spark.commands.help.Support;
+import com.disbots.spark.commands.info.ServerInfo;
+import com.disbots.spark.commands.info.Support;
 import com.disbots.spark.commands.settings.SetPrefix;
 import com.disbots.spark.commands.system.Kill;
 import com.disbots.spark.commands.system.Ping;
@@ -37,7 +38,6 @@ import io.github.cdimascio.dotenv.Dotenv;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.activity.ActivityType;
-import org.javacord.api.entity.intent.Intent;
 
 import java.util.Arrays;
 
@@ -94,6 +94,7 @@ public class Main
         commandHandler.registerCommand(new Support());
         commandHandler.registerCommand(new Uptime());
         commandHandler.registerCommand(new Github());
+        commandHandler.registerCommand(new BotInfo());
         commandHandler.registerCommand(new Kill());
         commandHandler.registerCommand(new ServerInfo());
         commandHandler.registerCommand(new Help(commandHandler));

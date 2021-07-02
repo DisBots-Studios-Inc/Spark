@@ -18,7 +18,7 @@
  *
  */
 
-package com.disbots.spark.commands.help;
+package com.disbots.spark.commands.info;
 
 import com.disbots.spark.util.embeds.EmbedColorPalette;
 import com.disbots.spark.util.embeds.EmbedMaker;
@@ -31,23 +31,35 @@ import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.util.logging.ExceptionLogger;
 
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Locale;
+
 public class ServerInfo implements CommandExecutor
 {
     @Command(aliases = {"ServerInfo", "SInfo", "ServerI"}, description = "Displays information about the current server.", usage = "ServerInfo")
     public void onCommand(MessageCreateEvent message)
     {
         Server currentServer = message.getServer().get();
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
+                        .withLocale(Locale.UK)
+                        .withZone(ZoneId.systemDefault());
+        
+        formatter.ISO_LOCAL_DATE_TIME.withZone(ZoneId.from(ZoneOffset.UTC));
 
         EmbedBuilder Embed = new EmbedBuilder()
                 .setAuthor(message.getMessage().getAuthor().getName(), "", message.getMessage().getAuthor().getAvatar())
                 .setTitle("Information on " + currentServer.getName())
-                .addField("Server Owner", currentServer.getOwner().get().getDiscriminatedName())
-                .addField("Server created at", currentServer.getCreationTimestamp().toString())
-                .addField("Members", "Users: " + currentServer.getMembers().stream().filter(u -> !u.isBot()).count() + "\n" + "Bot: " + currentServer.getMembers().stream().filter(User::isBot).count() + "\n" + "Total: " + currentServer.getMembers().size())
-                .addField("Channels", "Text: " + currentServer.getTextChannels().size() + "\n" + "Voice: " + currentServer.getVoiceChannels().size())
-                .addField("Server Boosts: ", "Boost count: " + currentServer.getBoostCount() + "\n" + "Boost level: " + currentServer.getBoostLevel())
-                .addField("Roles: ", Integer.toString(currentServer.getRoles().size()))
-                .addField("Verification Level:", currentServer.getVerificationLevel().toString())
+                .addField("Server Owner", currentServer.getOwner().get().getDiscriminatedName(), true)
+                .addField("Server created at", formatter.format(currentServer.getCreationTimestamp()), true)
+                .addField("Members", "Users: " + currentServer.getMembers().stream().filter(u -> !u.isBot()).count() + "\n" + "Bot: " + currentServer.getMembers().stream().filter(User::isBot).count() + "\n" + "Total: " + currentServer.getMembers().size(), true)
+                .addField("Channels", "Text: " + currentServer.getTextChannels().size() + "\n" + "Voice: " + currentServer.getVoiceChannels().size(), true)
+                .addField("Server Boosts: ", "Boost count: " + currentServer.getBoostCount() + "\n" + "Boost level: " + currentServer.getBoostLevel(), true)
+                .addField("Roles: ", Integer.toString(currentServer.getRoles().size()), true)
+                .addField("Verification Level:", currentServer.getVerificationLevel().toString(), true)
                 .setColor(EmbedColorPalette.NEUTRAL.getCode())
                 .setThumbnail(currentServer.getIcon().get().getUrl().toString())
                 .setFooter("Designed by DisBots Studios Inc.", "");

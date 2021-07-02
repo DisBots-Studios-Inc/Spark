@@ -29,6 +29,7 @@ import java.time.LocalDateTime;
  * @since 0.1
  * @version 0.3
  */
+// TODO make log to file.
 public class Logger
 {
     /**

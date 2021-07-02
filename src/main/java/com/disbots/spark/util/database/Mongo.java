@@ -93,7 +93,7 @@ public class Mongo
             logger.debug("Bot is in: ", "database");
             logger.debug(server.getName(), "database");
 
-            Server ServerObject = new Server(server.getName(), "s/");
+            Server ServerObject = new Server(server.getId(), "s/");
             serverCollection.insertOne(ServerObject);
         });
 

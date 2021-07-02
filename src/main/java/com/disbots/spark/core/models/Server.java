@@ -21,6 +21,58 @@
 package com.disbots.spark.core.models;
 
 import org.bson.types.ObjectId;
+import org.javacord.api.DiscordApi;
+import org.javacord.api.audio.AudioConnection;
+import org.javacord.api.entity.Icon;
+import org.javacord.api.entity.Region;
+import org.javacord.api.entity.VanityUrlCode;
+import org.javacord.api.entity.auditlog.AuditLog;
+import org.javacord.api.entity.auditlog.AuditLogActionType;
+import org.javacord.api.entity.auditlog.AuditLogEntry;
+import org.javacord.api.entity.channel.ChannelCategory;
+import org.javacord.api.entity.channel.ServerChannel;
+import org.javacord.api.entity.channel.ServerTextChannel;
+import org.javacord.api.entity.channel.ServerVoiceChannel;
+import org.javacord.api.entity.emoji.KnownCustomEmoji;
+import org.javacord.api.entity.permission.Role;
+import org.javacord.api.entity.server.*;
+import org.javacord.api.entity.server.invite.RichInvite;
+import org.javacord.api.entity.user.User;
+import org.javacord.api.entity.webhook.IncomingWebhook;
+import org.javacord.api.entity.webhook.Webhook;
+import org.javacord.api.interaction.SlashCommand;
+import org.javacord.api.listener.ObjectAttachableListener;
+import org.javacord.api.listener.channel.server.*;
+import org.javacord.api.listener.channel.server.invite.ServerChannelInviteCreateListener;
+import org.javacord.api.listener.channel.server.invite.ServerChannelInviteDeleteListener;
+import org.javacord.api.listener.channel.server.text.ServerTextChannelChangeSlowmodeListener;
+import org.javacord.api.listener.channel.server.text.ServerTextChannelChangeTopicListener;
+import org.javacord.api.listener.channel.server.text.WebhooksUpdateListener;
+import org.javacord.api.listener.channel.server.voice.*;
+import org.javacord.api.listener.interaction.ButtonClickListener;
+import org.javacord.api.listener.interaction.InteractionCreateListener;
+import org.javacord.api.listener.interaction.MessageComponentCreateListener;
+import org.javacord.api.listener.interaction.SlashCommandCreateListener;
+import org.javacord.api.listener.message.*;
+import org.javacord.api.listener.message.reaction.ReactionAddListener;
+import org.javacord.api.listener.message.reaction.ReactionRemoveAllListener;
+import org.javacord.api.listener.message.reaction.ReactionRemoveListener;
+import org.javacord.api.listener.server.*;
+import org.javacord.api.listener.server.emoji.KnownCustomEmojiChangeNameListener;
+import org.javacord.api.listener.server.emoji.KnownCustomEmojiChangeWhitelistedRolesListener;
+import org.javacord.api.listener.server.emoji.KnownCustomEmojiCreateListener;
+import org.javacord.api.listener.server.emoji.KnownCustomEmojiDeleteListener;
+import org.javacord.api.listener.server.member.ServerMemberBanListener;
+import org.javacord.api.listener.server.member.ServerMemberJoinListener;
+import org.javacord.api.listener.server.member.ServerMemberLeaveListener;
+import org.javacord.api.listener.server.member.ServerMemberUnbanListener;
+import org.javacord.api.listener.server.role.*;
+import org.javacord.api.listener.user.*;
+import org.javacord.api.util.event.ListenerManager;
+
+import java.time.Instant;
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * The POJO for the servers
@@ -32,12 +84,12 @@ import org.bson.types.ObjectId;
 public class Server
 {
     private ObjectId id;
-    private String ServerName;
+    private long ServerId;
     private String Prefix;
 
-    public Server(final String serverName, final String prefix)
+    public Server(final long serverId, final String prefix)
     {
-        ServerName = serverName;
+        ServerId = serverId;
         Prefix = prefix;
     }
 
@@ -51,14 +103,14 @@ public class Server
         this.id = id;
     }
 
-    public String getServerName()
+    public long getServerId()
     {
-        return ServerName;
+        return ServerId;
     }
 
-    public void setServerName(String serverName)
+    public void setServerId(long serverId)
     {
-        ServerName = serverName;
+        ServerId = serverId;
     }
 
     public String getPrefix()
