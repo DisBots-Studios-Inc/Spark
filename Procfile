@@ -1,1 +1,1 @@
-worker: java -jar /libs/Spark-0.3-all.jar
+worker: java -jar /libs/Spark-1.3.0-all.jar
