@@ -52,7 +52,7 @@ public class Mongo
 
     private static DiscordApi bot;
     public static MongoClient mongoClient;
-    MongoCollection<Server> serverCollection;
+    public static MongoCollection<Server> serverCollection;
 
     public Mongo(DiscordApi api)
     {

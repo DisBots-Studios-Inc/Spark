@@ -26,7 +26,6 @@ import com.disbots.spark.commands.info.BotInfo;
 import com.disbots.spark.commands.info.Github;
 import com.disbots.spark.commands.info.ServerInfo;
 import com.disbots.spark.commands.info.Support;
-import com.disbots.spark.commands.settings.SetPrefix;
 import com.disbots.spark.commands.system.Kill;
 import com.disbots.spark.commands.system.Ping;
 import com.disbots.spark.commands.system.Uptime;
@@ -89,7 +88,6 @@ public class Main
         //Register commands
         logger.info("Registering commands...", "client");
         commandHandler.registerCommand(new Ping());
-        commandHandler.registerCommand(new SetPrefix());
         commandHandler.registerCommand(new Magic8Ball());
         commandHandler.registerCommand(new Support());
         commandHandler.registerCommand(new Uptime());
