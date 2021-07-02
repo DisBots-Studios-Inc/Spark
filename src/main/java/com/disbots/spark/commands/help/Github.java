@@ -37,14 +37,13 @@ public class Github implements CommandExecutor
     @Command(aliases = {"Github", "Repo"}, description = "Displays the github repo of the bot..", usage = "Github")
     public void OnCommand(MessageCreateEvent message)
     {
-        String GithubRepo = """
-                            The following is are the important github and other links:
-
-                            Main Repo: https://github.com/DisBots-Studios-Inc/Spark
-                            Issues: https://github.com/DisBots-Studios-Inc/Spark/issues
-                            Pull Requests: https://github.com/DisBots-Studios-Inc/Spark/pulls
-                            Projects: https://github.com/DisBots-Studios-Inc/Spark/projects
-                            Travis CI: https://travis-ci.com/github/DisBots-Studios-Inc/Spark""";
+        String GithubRepo = "The following is are the important github and other links:\n" +
+                            "\n" +
+                            "Main Repo: https://github.com/DisBots-Studios-Inc/Spark\n" +
+                            "Issues: https://github.com/DisBots-Studios-Inc/Spark/issues\n" +
+                            "Pull Requests: https://github.com/DisBots-Studios-Inc/Spark/pulls\n" +
+                            "Projects: https://github.com/DisBots-Studios-Inc/Spark/projects\n" +
+                            "Travis CI: https://travis-ci.com/github/DisBots-Studios-Inc/Spark";
 
         message.getChannel().sendMessage(new EmbedMaker().neutral(GithubRepo, message.getMessage()).setTitle("**Github Repo:**"));
     }

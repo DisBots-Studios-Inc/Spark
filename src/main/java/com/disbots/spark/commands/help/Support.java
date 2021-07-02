@@ -37,12 +37,11 @@ public class Support implements CommandExecutor
     @Command(aliases = {"Support"}, description = "Displays the support server message.", usage = "Support")
     public void onCommand(MessageCreateEvent message)
     {
-        String supportMessage = """
-                Here is the link to our **support server**: https://discord.gg/Fjrvtq4mZc
-
-                We would be glad to help you!
-                                
-                Also if there is an issue with the bot, along with reporting it there please file a github on: https://github.com/DisBots-Studios-Inc/Spark/issues""";
+        String supportMessage = "Here is the link to our **support server**: https://discord.gg/Fjrvtq4mZc\n" +
+                                "\n" +
+                                "We would be glad to help you!\n" +
+                                "\n" +
+                                "Also if there is an issue with the bot, along with reporting it there please file a github on: https://github.com/DisBots-Studios-Inc/Spark/issues";
 
         message.getChannel().sendMessage(new EmbedMaker().neutral(supportMessage, message.getMessage()).setTitle("**Support Server:**"));
     }
