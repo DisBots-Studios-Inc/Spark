@@ -28,7 +28,7 @@ import org.javacord.api.entity.message.embed.EmbedBuilder;
  *
  * @author Aktindo
  * @since 0.1
- * @version 0.2
+ * @version 0.3
  */
 public class EmbedMaker {
 

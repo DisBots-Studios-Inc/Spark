@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Aktindo
+ * Copyright (C) 2021 Aktindo & Game Glide
  *
  * This file is part of Spark.
  *
@@ -20,33 +20,83 @@
 
 package com.disbots.spark.util.database;
 
+import com.disbots.spark.core.models.Server;
 import com.disbots.spark.util.logging.Logger;
+import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.codecs.pojo.PojoCodecProvider;
+import org.javacord.api.DiscordApi;
+
+import java.util.Collection;
 
 import static com.disbots.spark.core.Main.dotenv;
+import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
+import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 /**
  * Mongodb utility
  *
- * @author Aktindo
+ * @author Aktindo & Game Glide
  * @since 0.1
- * @version 0.2
+ * @version 0.3
  * @implNote Please ensure that you have provided a Mongo URI.
  */
-public class Mongo {
+public class Mongo
+{
     private final Logger logger = new Logger();
-    private final static String MONGO_URI = dotenv.get("MONGO_URI");
+    private static String MONGO_URI = dotenv.get("MONGO_URI");
 
+    private static DiscordApi bot;
     public static MongoClient mongoClient;
+    public static MongoCollection<Server> serverCollection;
 
-    public void connect() {
+    public Mongo(DiscordApi api)
+    {
+        bot = api;
+    }
+
+    public void connect()
+    {
+        //POJO codec registry.
+        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
+                fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+
         logger.info("Connecting to MongoDB...", "database");
-        try {
+        try
+        {
             mongoClient = MongoClients.create(MONGO_URI);
-        } catch (Exception error) {
-            logger.error("Error while connecting to MongoDB." + error.toString(), "database");
+            MongoDatabase settingsDB = mongoClient.getDatabase("settings").withCodecRegistry(pojoCodecRegistry);
+            serverCollection = settingsDB.getCollection("serverSettings", Server.class);
+        }
+        catch (Exception error)
+        {
+            logger.error("Error while connecting to MongoDB", "database", error);
         }
         logger.info("Connected to MongoDB!", "database");
+
+        // drop all the data in it
+        serverCollection.drop();
+
+        logger.info("Registering guilds...", "database");
+        RegisterGuilds();
+    }
+
+    private void RegisterGuilds()
+    {
+        Collection<org.javacord.api.entity.server.Server> servers = bot.getServers();
+
+        servers.forEach(server -> {
+            logger.debug("Bot is in: ", "database");
+            logger.debug(server.getName(), "database");
+
+            Server ServerObject = new Server(server.getId(), "s/");
+            serverCollection.insertOne(ServerObject);
+        });
+
+        logger.info("Registered Guilds successfully!", "database");
     }
 }

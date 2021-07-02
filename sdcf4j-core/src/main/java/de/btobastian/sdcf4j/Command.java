@@ -64,6 +64,14 @@ public @interface Command {
     String usage() default "";
 
     /**
+     * Gets the category of the command.
+     * If no category was provided it will use nothing.
+     *
+     * @return The category of the command.
+     */
+    String category() default "";
+
+    /**
      * Gets the permissions required for a user to run the command.
      *
      * @return The permissions required for a user to run the command.

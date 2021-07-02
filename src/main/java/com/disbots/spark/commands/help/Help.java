@@ -29,7 +29,7 @@ import de.btobastian.sdcf4j.CommandHandler;
  *
  * @author Game Glide
  * @since 0.2
- * @version 0.2
+ * @version 0.3
  */
 public class Help implements CommandExecutor
 {

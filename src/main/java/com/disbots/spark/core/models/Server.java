@@ -18,35 +18,56 @@
  *
  */
 
-package com.disbots.spark.util.embeds;
+package com.disbots.spark.core.models;
 
-import java.awt.*;
+import org.bson.types.ObjectId;
 
 /**
- * Color palette for the bot.
+ * The POJO for the servers
  *
  * @author Game Glide
- * @since 0.1
+ * @since 0.2
  * @version 0.3
  */
-public enum EmbedColorPalette
+public class Server
 {
-    /* Embed Color Pallet for the bot. */
+    private ObjectId id;
+    private long ServerId;
+    private String Prefix;
 
-    SUCCESS(new Color(46, 204, 113)),
-    NEUTRAL(new Color(215, 140, 0)),
-    WARNING(new Color(241, 196, 15)),
-    ERROR(new Color(231, 76, 60));
-
-    private final Color code;
-
-    EmbedColorPalette(Color code)
+    public Server(final long serverId, final String prefix)
     {
-        this.code = code;
+        ServerId = serverId;
+        Prefix = prefix;
     }
 
-    public Color getCode()
+    public ObjectId getId()
     {
-        return code;
+        return id;
+    }
+
+    public void setId(ObjectId id)
+    {
+        this.id = id;
+    }
+
+    public long getServerId()
+    {
+        return ServerId;
+    }
+
+    public void setServerId(long serverId)
+    {
+        ServerId = serverId;
+    }
+
+    public String getPrefix()
+    {
+        return Prefix;
+    }
+
+    public void setPrefix(String prefix)
+    {
+        Prefix = prefix;
     }
 }

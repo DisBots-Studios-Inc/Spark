@@ -7,6 +7,9 @@
   <component name="PDMPlugin">
     <option name="skipTestSources" value="false" />
   </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/Spark_Error.log" />
+  </component>
   <component name="ProjectResources">
     <resource url="http://jakarta.apache.org/log4j/" location="$PROJECT_DIR$" />
   </component>

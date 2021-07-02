@@ -22,8 +22,13 @@ package com.disbots.spark.core;
 
 import com.disbots.spark.commands.fun.Magic8Ball;
 import com.disbots.spark.commands.help.Help;
-import com.disbots.spark.commands.settings.SetPrefix;
+import com.disbots.spark.commands.info.BotInfo;
+import com.disbots.spark.commands.info.Github;
+import com.disbots.spark.commands.info.ServerInfo;
+import com.disbots.spark.commands.info.Support;
+import com.disbots.spark.commands.system.Kill;
 import com.disbots.spark.commands.system.Ping;
+import com.disbots.spark.commands.system.Uptime;
 import com.disbots.spark.util.database.Mongo;
 import com.disbots.spark.util.logging.Logger;
 import de.btobastian.sdcf4j.CommandHandler;
@@ -40,7 +45,7 @@ import java.util.Arrays;
  *
  * @author Aktindo & Game Glide
  * @since 0.1
- * @version 0.2
+ * @version 0.3
  * @implNote Please insure that env is set correctly.
  */
 
@@ -51,16 +56,17 @@ public class Main
 
     private final static Logger logger = new Logger();
     private final static String TOKEN = dotenv.get("TOKEN");
-    public final static String MAGICBALLURI = dotenv.get("8BALLURI");
-    private final static Mongo mongoUtil = new Mongo();
+    public final static String MAGICBALLURI = dotenv.get("8BALL_URI");
+    private static Mongo mongoUtil;
 
-    static DiscordApi client;
+    public static DiscordApi client;
     static CommandHandler commandHandler;
 
     public static void main(String[] args)
     {
         logger.info("Loading resources...", "client");
-        client = new DiscordApiBuilder().setToken(TOKEN).login().join();
+        client = new DiscordApiBuilder().setToken(TOKEN).setAllIntents().login().join();
+        mongoUtil = new Mongo(client);
         commandHandler = new JavacordHandler(client);
 
         commandHandler.setDefaultPrefix(Prefix);
@@ -82,8 +88,13 @@ public class Main
         //Register commands
         logger.info("Registering commands...", "client");
         commandHandler.registerCommand(new Ping());
-        commandHandler.registerCommand(new SetPrefix());
         commandHandler.registerCommand(new Magic8Ball());
+        commandHandler.registerCommand(new Support());
+        commandHandler.registerCommand(new Uptime());
+        commandHandler.registerCommand(new Github());
+        commandHandler.registerCommand(new BotInfo());
+        commandHandler.registerCommand(new Kill());
+        commandHandler.registerCommand(new ServerInfo());
         commandHandler.registerCommand(new Help(commandHandler));
         logger.info("Registered a total of " + Arrays.stream(commandHandler.getCommands().toArray()).count() + " commands!", "client");
 

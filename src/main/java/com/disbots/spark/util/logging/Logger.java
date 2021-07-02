@@ -27,10 +27,12 @@ import java.time.LocalDateTime;
  *
  * @author Aktindo
  * @since 0.1
- * @version 0.2
+ * @version 0.3
  */
 public class Logger
 {
+    private org.apache.log4j.Logger log4jLogger = org.apache.log4j.Logger.getLogger(Logger.class.getName());
+
     /**
      * Logs information to the console with source.
      *
@@ -39,7 +41,7 @@ public class Logger
      */
     public void info(String message, String src)
     {
-        System.out.println(this.toHHMMSS() + " "  + LoggerColors.GREEN + "INFO" + LoggerColors.RESET + " " + "[" + this.getSrc(src) + "]" + " " + message);
+        log4jLogger.info(this.toHHMMSS() + " "  + LoggerColors.GREEN + "INFO" + LoggerColors.RESET + " " + "[" + this.getSrc(src) + "]" + " " + message);
     }
 
     /**
@@ -50,18 +52,23 @@ public class Logger
      */
     public void warning(String message, String src)
     {
-        System.out.println(this.toHHMMSS() + " "  + LoggerColors.YELLOW + "WARNING" + LoggerColors.RESET + " " + "[" + this.getSrc(src) + "]" + " " + message);
+        log4jLogger.warn(this.toHHMMSS() + " "  + LoggerColors.YELLOW + "WARNING" + LoggerColors.RESET + " " + "[" + this.getSrc(src) + "]" + " " + message);
     }
 
     /**
      * Logs errors to the console with source.
      *
-     * @param error error to be displayed
+     * @param err error to be displayed
      * @param src the source of the message. for example: Client or Command.
      */
-    public void error(String error, String src)
+    public void error(String message, String src, Throwable err)
     {
-        System.out.println(this.toHHMMSS() + " "  + LoggerColors.RED + "Error" + LoggerColors.RESET + " " + "[" + this.getSrc(src) + "]" + "\n" + "> " + error);
+        log4jLogger.error(this.toHHMMSS() + " "  + LoggerColors.RED + "ERROR" + LoggerColors.RESET + " " + "[" + this.getSrc(src) + "]" + "\n" + "> " + message, err);
+    }
+
+    public void debug(String message, String src)
+    {
+        log4jLogger.debug(this.toHHMMSS() + " "  + LoggerColors.CYAN + "DEBUG" + LoggerColors.RESET + " " + "[" + this.getSrc(src) + "]" + " " + message);
     }
 
     /**
