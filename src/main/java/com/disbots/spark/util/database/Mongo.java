@@ -74,7 +74,7 @@ public class Mongo
         }
         catch (Exception error)
         {
-            logger.error("Error while connecting to MongoDB." + error.toString(), "database");
+            logger.error("Error while connecting to MongoDB", "database", error);
         }
         logger.info("Connected to MongoDB!", "database");
 

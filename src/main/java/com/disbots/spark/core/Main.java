@@ -21,9 +21,9 @@
 package com.disbots.spark.core;
 
 import com.disbots.spark.commands.fun.Magic8Ball;
+import com.disbots.spark.commands.help.Help;
 import com.disbots.spark.commands.info.BotInfo;
 import com.disbots.spark.commands.info.Github;
-import com.disbots.spark.commands.help.Help;
 import com.disbots.spark.commands.info.ServerInfo;
 import com.disbots.spark.commands.info.Support;
 import com.disbots.spark.commands.settings.SetPrefix;

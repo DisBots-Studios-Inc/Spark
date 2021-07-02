@@ -34,6 +34,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -47,6 +50,7 @@ import java.util.concurrent.CompletableFuture;
 public class Magic8Ball implements CommandExecutor
 {
     private static HttpURLConnection con;
+    private static final Logger logger = new Logger();
 
     @Command(aliases = {"8Ball", "Ball", "Toss"}, description = "Displays the answer to your questions!", usage = "8Ball <question>")
     public void OnCommand(MessageCreateEvent message, String[] args)
@@ -55,16 +59,33 @@ public class Magic8Ball implements CommandExecutor
         {
             message.getChannel().sendMessage(new EmbedMaker().error("Incorrect usage! Run `" + Main.Prefix + "help 8Ball" + "`", message.getMessage()).setTitle("Syntax error!"));
         }
-        else // 1 argument
+        else
         {
+            List<String> ArgsList = convertArrayToList(args);
+            // remove the command
+            if (args[0].equals("s/8Ball"))
+            {
+                ArgsList.remove("s/8Ball");   
+            }
+            else if (args[0].equals("s/Ball"))
+            {
+                ArgsList.remove("s/Ball");
+            }
+            else if (args[0].equals("s/Toss"))
+            {
+                ArgsList.remove("s/Toss");
+            }
+
             CompletableFuture<Void> RequestResponse = message.getChannel().sendMessage(new EmbedMaker().loading("The almighty 8Ball is thinking!", message.getMessage()).setTitle("Loading...")).thenAccept(SentMessage -> {
                 String response;
                 String ActualAnswer = null;
 
                 try
                 {
-                    // HACK: this just uses the first word, not the entire sentence.
-                    response = makeRequest(args[1]);
+                    String question = String.join(" ", ArgsList);
+                    logger.debug("A new question for Magic8Ball: " + question, "Command");
+
+                    response = makeRequest(question);
                     ObjectMapper objectMapper = new ObjectMapper();
 
                     JsonNode node = objectMapper.readValue(response, JsonNode.class);
@@ -75,7 +96,7 @@ public class Magic8Ball implements CommandExecutor
                 catch (IOException e)
                 {
                     message.getChannel().sendMessage(new EmbedMaker().error("The request failed with `IOEXCEPTION`. Please contact the developers!\nAnd if you are the developer then good luck fixing this!", message.getMessage()).setTitle("An error has occurred!"));
-                    new Logger().error("An IOException occured while parsing json response in command 8Ball!. details below:", "Commands");
+                    new Logger().error("An IOException occured while parsing json response in command 8Ball", "Commands", e);
                     e.printStackTrace();
                 }
 
@@ -118,5 +139,14 @@ public class Magic8Ball implements CommandExecutor
 
             con.disconnect();
         }
+    }
+
+    public static <T> List<T> convertArrayToList(T[] array)
+    {
+        List<T> list = new ArrayList<>();
+
+        Collections.addAll(list, array);
+
+        return list;
     }
 }

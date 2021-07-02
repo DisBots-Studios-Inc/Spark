@@ -64,7 +64,7 @@ public class Kill implements CommandExecutor
             }
             catch (InterruptedException e)
             {
-                logger.error("Failed to sleep thread in kill command: " + e.toString(), "Command");
+                logger.error("Failed to sleep thread in kill command", "Command", e);
             }
             System.exit(0);
         }
