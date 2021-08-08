@@ -34,7 +34,7 @@ import org.javacord.api.event.message.MessageCreateEvent;
  */
 public class Support implements CommandExecutor
 {
-    @Command(aliases = {"Support"}, description = "Displays the support server message.", usage = "Support")
+    @Command(aliases = {"Support"}, description = "Displays the support server message.", usage = "Support", category = "info")
     public void onCommand(MessageCreateEvent message)
     {
         String supportMessage = "Here is the link to our **support server**: https://discord.gg/Fjrvtq4mZc\n" +

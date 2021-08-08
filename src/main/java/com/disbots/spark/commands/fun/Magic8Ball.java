@@ -52,7 +52,7 @@ public class Magic8Ball implements CommandExecutor
     private static HttpURLConnection con;
     private static final Logger logger = new Logger();
 
-    @Command(aliases = {"8Ball", "Ball", "Toss"}, description = "Displays the answer to your questions!", usage = "8Ball <question>")
+    @Command(aliases = {"8Ball", "Ball", "Toss"}, description = "Displays the answer to your questions!", usage = "8Ball `question`", category = "fun")
     public void OnCommand(MessageCreateEvent message, String[] args)
     {
         if (args.length == 0)  // s/8Ball

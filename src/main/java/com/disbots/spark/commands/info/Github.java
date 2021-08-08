@@ -34,7 +34,7 @@ import org.javacord.api.event.message.MessageCreateEvent;
  */
 public class Github implements CommandExecutor
 {
-    @Command(aliases = {"Github", "Repo"}, description = "Displays the github repo of the bot..", usage = "Github")
+    @Command(aliases = {"Github", "Repo"}, description = "Displays the github repo of the bot..", usage = "Github", category = "info")
     public void OnCommand(MessageCreateEvent message)
     {
         String GithubRepo = "The following is are the important github and other links:\n" +

@@ -29,7 +29,7 @@ import org.javacord.api.event.message.MessageCreateEvent;
 
 public class BotInfo implements CommandExecutor
 {
-    @Command(aliases = {"BotInfo", "BotI", "BIonfo"}, description = "Shows information about the bot!", usage = "BotInfo")
+    @Command(aliases = {"BotInfo", "BotI", "BIonfo"}, description = "Shows information about the bot!", usage = "BotInfo", category = "info")
     public void OnBotInfo(MessageCreateEvent message)
     {
         SendEmbed(message);

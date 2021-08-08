@@ -29,7 +29,7 @@ import java.lang.management.ManagementFactory;
 
 public class Uptime implements CommandExecutor
 {
-    @Command(aliases = {"uptime", "up"}, description = "Shows how long the bot has been up for.", usage = "uptime")
+    @Command(aliases = {"uptime", "up"}, description = "Shows how long the bot has been up for.", usage = "uptime", category = "info")
     public void OnUptime(MessageCreateEvent message)
     {
         message.getChannel().sendMessage(new EmbedMaker().neutral("The bot has been online for " + formatUptime(), message.getMessage()).setTitle("**Uptime:**"));

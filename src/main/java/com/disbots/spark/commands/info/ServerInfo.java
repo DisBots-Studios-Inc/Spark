@@ -36,7 +36,7 @@ import java.util.Locale;
 
 public class ServerInfo implements CommandExecutor
 {
-    @Command(aliases = {"ServerInfo", "SInfo", "ServerI"}, description = "Displays information about the current server.", usage = "ServerInfo")
+    @Command(aliases = {"ServerInfo", "SInfo", "ServerI"}, description = "Displays information about the current server.", usage = "ServerInfo", category = "info")
     public void onCommand(MessageCreateEvent message)
     {
         Server currentServer = message.getServer().get();

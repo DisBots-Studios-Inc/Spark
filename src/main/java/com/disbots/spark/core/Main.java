@@ -51,7 +51,7 @@ import java.util.Arrays;
 
 public class Main
 {
-    public static String Prefix = "s/";
+    public static String Prefix = "<";
     public final static Dotenv dotenv = Dotenv.load();
 
     private final static Logger logger = new Logger();
@@ -82,19 +82,23 @@ public class Main
     {
         //Set status
         logger.info("Setting the client activity...", "client");
-        client.updateActivity(ActivityType.LISTENING, "to your messages!");
+        client.updateActivity(ActivityType.LISTENING, "your messages!");
         logger.info("Successfully set status!", "client");
 
         //Register commands
         logger.info("Registering commands...", "client");
-        commandHandler.registerCommand(new Ping());
+        // Fun commands
         commandHandler.registerCommand(new Magic8Ball());
-        commandHandler.registerCommand(new Support());
-        commandHandler.registerCommand(new Uptime());
-        commandHandler.registerCommand(new Github());
+        // Info commands
         commandHandler.registerCommand(new BotInfo());
-        commandHandler.registerCommand(new Kill());
+        commandHandler.registerCommand(new Github());
         commandHandler.registerCommand(new ServerInfo());
+        commandHandler.registerCommand(new Support());
+        // System commands
+        commandHandler.registerCommand(new Ping());
+        commandHandler.registerCommand(new Uptime());
+        commandHandler.registerCommand(new Kill());
+        // Help commands
         commandHandler.registerCommand(new Help(commandHandler));
         logger.info("Registered a total of " + Arrays.stream(commandHandler.getCommands().toArray()).count() + " commands!", "client");
 

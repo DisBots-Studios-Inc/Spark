@@ -40,7 +40,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class Kill implements CommandExecutor
 {
-    @Command(aliases = {"Kill", "Stop"}, description = "Terminates the bot", usage = "Kill", showInHelpPage = false)
+    @Command(aliases = {"Kill", "Stop"}, description = "Terminates the bot", usage = "Kill", showInHelpPage = false, category = "info")
     public void onCommand(User user, MessageCreateEvent message)
     {
         Logger logger = new Logger();

@@ -40,7 +40,7 @@ public class Ping implements CommandExecutor
 {
     private final EmbedMaker embedMaker = new EmbedMaker();
 
-    @Command(aliases = {"ping", "p", "latency", "botlatency"}, description = "Tests and shows the bot's latency.")
+    @Command(aliases = {"ping", "p", "latency", "botlatency"}, description = "Tests and shows the bot's latency.", category = "info")
     public void onPingCommand(String[] args, MessageCreateEvent message)
     {
         /* Sending The embed and checking for errors in calculating the latency. */
